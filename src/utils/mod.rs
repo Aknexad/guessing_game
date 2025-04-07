@@ -9,3 +9,7 @@ pub fn read_terminal() -> String {
 
     return input.trim().to_string();
 }
+
+pub fn calculating_proximity(source: u32, input: u32) -> u32 {
+    source - input
+}

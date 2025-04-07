@@ -1,3 +1,4 @@
+use colored::Colorize;
 use std::cmp::Ordering;
 mod utils;
 
@@ -17,13 +18,17 @@ fn main() {
                 continue;
             }
         };
-        println!("You guessed: {}", guess);
+        println!(
+            "{} {}",
+            Colorize::blue("You Guessed"),
+            Colorize::blue(guess.to_string().as_str())
+        );
 
         match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too big!"),
+            Ordering::Less => println!("{}", Colorize::red("Too Small!")),
+            Ordering::Greater => println!("{}", Colorize::red("Too Big")),
             Ordering::Equal => {
-                println!("You win!");
+                println!("{}", Colorize::green("You WIn!"));
                 break;
             }
         }
