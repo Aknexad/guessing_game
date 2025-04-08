@@ -1,9 +1,14 @@
 use colored::Colorize;
-use std::cmp::Ordering;
 mod utils;
 
 fn main() {
-    println!("Guess the number!");
+    println!(
+        "
+ ╔═══════════════════════╗
+ ║ 🎯  Number Guesser 🎯 ║
+ ╚═══════════════════════╝
+"
+    );
 
     let secret_number = rand::random_range(1..=101);
     println!("secret_number is {}", secret_number);
@@ -24,13 +29,19 @@ fn main() {
             Colorize::blue(guess.to_string().as_str())
         );
 
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("{}", Colorize::red("Too Small!")),
-            Ordering::Greater => println!("{}", Colorize::red("Too Big")),
-            Ordering::Equal => {
-                println!("{}", Colorize::green("You WIn!"));
-                break;
-            }
+        let result = utils::comparing_numbers(secret_number, guess);
+
+        if result {
+            break;
         }
+
+        //match guess.cmp(&secret_number) {
+        //    Ordering::Less => println!("{}", Colorize::red("Too Small!")),
+        //    Ordering::Greater => println!("{}", Colorize::red("Too Big")),
+        //    Ordering::Equal => {
+        //        println!("{}", Colorize::green("You WIn!"));
+        //        break;
+        //    }
+        //}
     }
 }
