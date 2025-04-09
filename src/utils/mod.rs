@@ -14,11 +14,11 @@ pub fn read_terminal() -> String {
 
 fn calculating_proximity_coler(sub_result: u32) -> String {
     match sub_result {
-        number if number > 20 => "To Far".red().to_string(),
-        number if number >= 10 => "Not To Far".bright_red().to_string(),
-        number if number >= 5 => "So Close".yellow().to_string(),
-        number if number >= 1 => "You're almost there".bright_green().to_string(),
-        _ => "You Win".green().to_string(),
+        0 => "You Win".green().to_string(),
+        number if (1..5).contains(&number) => "You're almost there".bright_green().to_string(),
+        number if (5..=10).contains(&number) => "So Close".yellow().to_string(),
+        number if (10..=20).contains(&number) => "Not To Far".bright_red().to_string(),
+        _ => "To Fat".red().to_string().bold().to_string(),
     }
 }
 

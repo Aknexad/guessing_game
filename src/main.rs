@@ -9,7 +9,7 @@ fn main() {
  ╚═══════════════════════╝
 "
     );
-
+    let mut score = 0;
     let secret_number = rand::random_range(1..=101);
     println!("secret_number is {}", secret_number);
     loop {
@@ -31,17 +31,11 @@ fn main() {
 
         let result = utils::comparing_numbers(secret_number, guess);
 
+        score += 1;
         if result {
             break;
         }
-
-        //match guess.cmp(&secret_number) {
-        //    Ordering::Less => println!("{}", Colorize::red("Too Small!")),
-        //    Ordering::Greater => println!("{}", Colorize::red("Too Big")),
-        //    Ordering::Equal => {
-        //        println!("{}", Colorize::green("You WIn!"));
-        //        break;
-        //    }
-        //}
     }
+
+    println!("Your Score is {}", score);
 }
